@@ -295,6 +295,11 @@ pub fn claude_build_chat_completions_body(
                 })
             })
             .collect();
+        body["tools"].as_array_mut().unwrap().push(json!({
+            "name": "web_search",
+            "type": "web_search_20250305",
+            "max_uses": 5,
+        }));
     }
     Ok(body)
 }
